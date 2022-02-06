@@ -1,24 +1,21 @@
-import { tab } from '@testing-library/user-event/dist/tab';
 import { useEffect, useState } from 'react';
 import './App.css';
 
+import { SRLWrapper } from 'simple-react-lightbox';
+
 const images = [
-  { id: '1', imageName: 'img1.jpeg', tag: 'free' },
-  { id: '2', imageName: 'img2.jpeg', tag: 'new' },
-  { id: '3', imageName: 'img3.jpeg', tag: 'pro' },
-  { id: '4', imageName: 'img4.jpeg', tag: 'pro' },
-  { id: '5', imageName: 'img5.jpeg', tag: 'free' },
-  { id: '6', imageName: 'img6.jpeg', tag: 'new' },
-  { id: '7', imageName: 'img6.jpeg', tag: 'pro' },
-  { id: '8', imageName: 'img8.jpeg', tag: 'free' },
-  { id: '9', imageName: 'img9.jpeg', tag: 'new' },
-  { id: '10', imageName: 'img10.jpeg', tag: 'new' },
-  { id: '11', imageName: 'img11.jpeg', tag: 'new' },
-  { id: '12', imageName: 'img12.jpeg', tag: 'new' },
-  { id: '13', imageName: 'img13.jpeg', tag: 'free' },
-  { id: '14', imageName: 'img14.jpeg', tag: 'pro' },
-  { id: '15', imageName: 'img15.jpeg', tag: 'free' },
-  { id: '16', imageName: 'img16.jpeg', tag: 'new' },
+  { id: '1', url: './images/img01.jpg', title: 'First Image', tag: 'free' },
+  { id: '2', url: './images/img02.jpg', title: 'Second Image', tag: 'new' },
+  { id: '3', url: './images/img03.jpg', title: 'Third Image', tag: 'pro' },
+  { id: '4', url: './images/img04.jpg', title: 'Fourth Image', tag: 'pro' },
+  { id: '5', url: './images/img05.jpg', title: 'Fifth Image', tag: 'free' },
+  { id: '6', url: './images/img06.jpg', title: 'Sixth Image', tag: 'new' },
+  { id: '7', url: './images/img07.jpg', title: 'Seventh Image', tag: 'pro' },
+  { id: '8', url: './images/img08.jpg', title: 'Eighth Image', tag: 'free' },
+  { id: '9', url: './images/img09.jpg', title: 'First Image', tag: 'new' },
+  { id: '10', url: './images/img10.jpg', title: 'First Image', tag: 'new' },
+  { id: '11', url: './images/img11.jpg', title: 'First Image', tag: 'new' },
+  { id: '12', url: './images/img12.jpg', title: 'First Image', tag: 'new' },
 ];
 
 function App() {
@@ -40,17 +37,15 @@ function App() {
         <TagButton name='pro' handleSetTag={setTag} tag={tag} />
       </div>
 
-      <div className='container'>
-        {filteredImages.map((image) => (
-          <div key={image.id} className='image-card'>
-            <img
-              className='image'
-              src={`/images/${image.imageName}`}
-              alt={image.imageName}
-            />
-          </div>
-        ))}
-      </div>
+      <SRLWrapper>
+        <div className='container'>
+          {filteredImages.map((image) => (
+            <div key={image.id} className='image-card'>
+              <img className='image' src={image.url} alt={image.title} />
+            </div>
+          ))}
+        </div>
+      </SRLWrapper>
     </div>
   );
 }
