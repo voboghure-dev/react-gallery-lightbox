@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
+import Masonry from 'react-masonry-css';
 import { SRLWrapper } from 'simple-react-lightbox';
 
 const images = [
@@ -39,11 +40,17 @@ function App() {
 
       <SRLWrapper>
         <div className='container'>
-          {filteredImages.map((image) => (
-            <div key={image.id} className='image-card'>
-              <img className='image' src={image.url} alt={image.title} />
-            </div>
-          ))}
+          <Masonry
+            breakpointCols={4}
+            className='my-masonry-grid'
+            columnClassName='my-masonry-grid_column'
+          >
+            {filteredImages.map((image) => (
+              <div key={image.id} className='image-card'>
+                <img className='image' src={image.url} alt={image.title} />
+              </div>
+            ))}
+          </Masonry>
         </div>
       </SRLWrapper>
     </div>
