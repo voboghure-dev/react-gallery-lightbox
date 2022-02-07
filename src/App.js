@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
-import Masonry from 'react-masonry-css';
+import SimpleReactLightbox from 'simple-react-lightbox';
 import { SRLWrapper } from 'simple-react-lightbox';
+import Masonry from 'react-masonry-css';
 
 const images = [
   { id: '1', url: './images/img01.jpg', title: 'First Image', tag: 'free' },
@@ -37,22 +38,23 @@ function App() {
         <TagButton name='free' handleSetTag={setTag} tag={tag} />
         <TagButton name='pro' handleSetTag={setTag} tag={tag} />
       </div>
-
-      <SRLWrapper>
-        <div className='container'>
-          <Masonry
-            breakpointCols={4}
-            className='my-masonry-grid'
-            columnClassName='my-masonry-grid_column'
-          >
-            {filteredImages.map((image) => (
-              <div key={image.id} className='image-card'>
-                <img className='image' src={image.url} alt={image.title} />
-              </div>
-            ))}
-          </Masonry>
-        </div>
-      </SRLWrapper>
+      <SimpleReactLightbox>
+        <SRLWrapper>
+          <div className='container'>
+            <Masonry
+              breakpointCols={{ default: 4, 800: 2 }}
+              className='my-masonry-grid'
+              columnClassName='my-masonry-grid_column'
+            >
+              {filteredImages.map((image) => (
+                <div key={image.id} className='image-card'>
+                  <img className='image' src={image.url} alt={image.title} />
+                </div>
+              ))}
+            </Masonry>
+          </div>
+        </SRLWrapper>
+      </SimpleReactLightbox>
     </div>
   );
 }
